@@ -1,0 +1,177 @@
+﻿portss.conf 
+
+
+
+
+
+
+Práctica 
+npam 
+rkhunter 
+Gpg
+Md5sum 
+tar 
+crontab 
+
+
+
+
+sfc [/scannow] [/scanonce] [/scanboot] [/revert] [/purgecache] [/cachesize=x] 
+
+
+sudo aptitude install rkhunter
+sudo rkhunter - -update
+sudo rkhunter - -checkall
+
+
+
+
+
+
+
+
+sudo apt install tar 
+sudo apt install cron 
+
+
+
+
+creamos un archivo.txt y lo guradamos
+
+
+tar -cvzf archivo.tar.gz ruta del archivo.txt
+tar -cvzf archivo.tar ruta del archivo.txt
+tar -xvf archivo.tar
+tar zcf 
+
+
+crontab 
+sincronizar con server madrid 
+timedatectl set-timezone Europe/Madrid 
+
+
+sudo nano archivo.sh 
+#!/bin/bash
+####################################
+#
+# Backup to NFS mount script.
+#
+####################################
+
+
+# What to backup. 
+backup_files="/home /var/spool/mail /etc /root /boot /opt"
+
+
+# Where to backup to.
+dest="/home/backupd"
+
+
+# Create archive filename.
+day=$(date +%A)
+hostname=$(hostname -s)
+archive_file="$hostname-$day.tgz"
+
+
+# Print start status message.
+echo "Backing up $backup_files to $dest/$archive_file"
+date
+echo
+
+
+# Backup the files using tar.
+tar czf $dest/$archive_file $backup_files
+
+
+# Print end status message.
+echo
+echo "Backup finished"
+date
+
+
+# Long listing of files in $dest to check file sizes.
+ls -lh $dest
+
+
+
+
+#!/bin/bash
+DATE=$(date +%Y-%m-%d-%H%M%S)
+BACKUP_DIR="/carpetadestino /backup"
+SOURCE="$HOME/carpetaorigen"
+tar -cvzpf $BACKUP_DIR/backup-$DATE.tar.gz $SOURCE
+
+
+
+
+sudo chmod ugo+x archivo.sh
+
+
+crontab -e 
+enter 
+00 19 * * * usuario /ubicacion/del/script/consulta.sh
+
+
+*min
+*hora
+*dia del mes 
+*mes 
+*dia de la semana 
+
+
+
+
+
+
+
+
+
+
+gpg
+sudo apt-get install gpg
+
+
+sudo gpg -c encriptado.txt
+sudo gpg -d encriptado.txt.gpg 
+
+
+
+
+
+
+cifrado asimetrico 
+
+
+sudo gpg --gen-key
+sudo gpg --list-keys
+
+
+
+
+
+
+AES256
+
+
+
+
+
+
+
+
+
+
+md5sum 
+
+
+sudo nano archivo.txt
+editamos el archivo 
+
+
+sudo md5sum archivo.txt
+sudo su 
+sudo md5sum archivo.txt > hash.md5
+exit
+md5sum -c hash.md5
+volvemos a editar el archivo.txt
+md5sum -c hash.md5
